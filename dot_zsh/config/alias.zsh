@@ -1,0 +1,34 @@
+# ================================
+#  Aliases
+# ================================
+source ~/.zsh/config/guard.zsh
+
+alias sudo='sudo '
+
+alias_if_cmd kitty ssh 'kitty +kitten ssh'
+alias_if_cmd zeditor zed 'zeditor'
+
+# Prefer lsd when available; otherwise keep stock ls and provide portable flags.
+if has lsd; then
+  alias_if_cmd lsd ls 'lsd'
+  alias_if_cmd lsd ll 'lsd -lh'
+  alias_if_cmd lsd la 'lsd -lhA'
+else
+  alias ll='ls -lh'
+  alias la='ls -lhA'
+fi
+
+# hyprlock helper
+if has hyprctl && has hyprlock; then
+  alias fix-hypr="hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'; hyprctl --instance 0 'dispatch exec hyprlock'"
+fi
+
+# Quick access helpers
+alias_if_cmd code ce 'code . && exit'
+alias_if_cmd zeditor ze 'zed . && exit'
+alias_if_cmd zeditor algo 'zed ~/weak/algo/ && exit'
+alias_if_cmd zeditor hw 'zed ~/ntu/ntuhw && exit'
+
+if has zeditor && has zellij; then
+  alias owo='zed ~/proj/OwoJudge/ && zellij --layout ~/.config/zellij/layout/owojudge.kdl'
+fi

@@ -1,0 +1,68 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "alt-shift-f": "editor::Format",
+      "alt-d": "vim::SelectNext",
+      "alt-z": "editor::ToggleSoftWrap",
+      "ctrl-s": "workspace::Save",
+      "ctrl-j": "workspace::ToggleBottomDock",
+    },
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "shift-k": "editor::Hover",
+      "g r": "editor::FindAllReferences",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "shift-k": "editor::MoveLineUp",
+      "shift-j": "editor::MoveLineDown",
+    },
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "l": "project_panel::OpenPermanent",
+    },
+  },
+  {
+    "bindings": {
+      "ctrl-h": "project_panel::ToggleFocus",
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-l": "workspace::ActivatePaneRight",
+      "alt-j": "workspace::ActivatePaneDown",
+      "alt-k": "workspace::ActivatePaneUp",
+      "ctrl-p": "file_finder::Toggle",
+      "alt-ctrl-w": "pane::CloseActiveItem",
+    },
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "a": "project_panel::NewFile",
+      "shift-a": "project_panel::NewDirectory",
+      "y": "project_panel::Copy",
+      "p": "project_panel::Paste",
+      "x": "project_panel::Cut",
+      "d": "project_panel::Delete",
+      "r": "project_panel::Rename",
+      "e": "project_panel::RevealInFileManager",
+    },
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-w": null,
+    },
+  },
+  {
+    "context": "(VimControl && !menu)",
+    "bindings": {
+      "g m": "editor::Rename",
+    },
+  },
+]

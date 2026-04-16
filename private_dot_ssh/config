@@ -1,0 +1,27 @@
+Host ws?
+  HostName %h.csie.ntu.edu.tw
+  User b12902119
+
+Host meow?
+  HostName %h.csie.ntu.edu.tw
+  User b12902119
+
+Host sigkill
+  HostName 140.112.253.214
+  User hyper
+
+Host cprog-new
+  HostName 140.112.187.55
+  User hyper
+
+Host cprog
+  HostName cprog114.csie.org
+  User hyper
+
+Host dsa
+  HostName 140.112.28.4
+  User hyper
+
+Host council
+  HostName 140.112.28.4
+  User council-admin

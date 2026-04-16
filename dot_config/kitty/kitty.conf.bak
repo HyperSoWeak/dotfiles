@@ -1,0 +1,17 @@
+font_family FiraMono Nerd Font
+font_size 12
+
+cursor_shape block
+cursor_trail 8
+
+shell_integration no-cursor
+window_padding_width 5
+
+paste_actions no-op
+
+
+
+# BEGIN_KITTY_THEME
+# YsDark
+include current-theme.conf
+# END_KITTY_THEME

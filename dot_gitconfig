@@ -1,0 +1,19 @@
+[user]
+	email = hypersoweak@gmail.com
+	name = Hyper Hu
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[alias]
+	lg = log --graph --oneline --decorate --all --pretty=format:'%C(auto)%h %C(blue)%an%C(reset) %d %s %C(black)%C(bold)%cr'
+	cm = commit
+	st = status -sb
+	last = log -1 HEAD
+	unstage = reset HEAD --
+[diff]
+	tool = delta
