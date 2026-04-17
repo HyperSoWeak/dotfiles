@@ -1,0 +1,49 @@
+{
+  "displays": [
+    {
+      "name": "eDP-1",
+      "description": "AU Optronics 0x60AD",
+      "x": 0,
+      "y": 315,
+      "physical_width": 2880,
+      "physical_height": 1800,
+      "transform": "normal",
+      "scale": 1.6,
+      "scale_filter": null,
+      "refresh": 120.0,
+      "dpms": true,
+      "adaptive_sync": false,
+      "custom_mode": false,
+      "mirror": "",
+      "ten_bit": false,
+      "active": true
+    },
+    {
+      "name": "HDMI-A-1",
+      "description": "Seiko Epson Corporation EPSON PJ 0x01010101",
+      "x": 1800,
+      "y": 0,
+      "physical_width": 1280,
+      "physical_height": 800,
+      "transform": "normal",
+      "scale": 2.0,
+      "scale_filter": null,
+      "refresh": 59.81,
+      "dpms": true,
+      "adaptive_sync": false,
+      "custom_mode": false,
+      "mirror": "",
+      "ten_bit": false,
+      "active": true
+    }
+  ],
+  "config": {
+    "view-scale": 0.15,
+    "snap-threshold": 10,
+    "indicator-timeout": 500,
+    "custom-mode": [],
+    "use-desc": true,
+    "confirm-timeout": 10,
+    "profile-bound-wallpapers": true
+  }
+}

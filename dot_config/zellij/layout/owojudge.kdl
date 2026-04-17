@@ -1,0 +1,40 @@
+layout {
+  tab name="MAIN" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      pane split_direction="horizontal" {
+        pane split_direction="vertical" {
+          size "30%"
+          pane {
+            name "frontend"
+            cwd "/home/hyper/proj/OwoJudge/frontend"
+            command "pnpm"
+            args "dev"
+          }
+          pane {
+            name "backend"
+            cwd "/home/hyper/proj/OwoJudge/backend"
+            command "docker"
+            args "compose" "up"
+          }
+        }
+        pane {
+          name "shell"
+          focus true
+          cwd "/home/hyper/proj/OwoJudge"
+        }
+      }
+      pane {
+        name "agent"
+        cwd "/home/hyper/proj/OwoJudge"
+        command "codex"
+        args "resume"
+      }
+    }
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+}

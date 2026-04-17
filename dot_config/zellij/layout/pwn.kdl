@@ -1,0 +1,48 @@
+layout {
+  tab name="PWN" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      pane {
+        name "pwndbg"
+        size "65%"
+        command "zsh"
+        args "-c" "sleep 2.1 && pwndbg -ex 'directory share/' -ex 'target remote :1234' -ex \"${PP_PWNDBG_ARGS}\""
+      }
+      pane split_direction="horizontal" {
+        pane {
+          name "gdbserver"
+          size "30%"
+          command "zsh"
+          args "-c" "sleep 2 && docker compose exec -u 0 chal sh -c 'gdbserver :1234 --attach $(pidof chal)'"
+        }
+        pane {
+          name "exploit"
+          command "python"
+          args "exploit.py"
+          focus true
+        }
+      }
+    }
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+  tab name="SHELL" {
+    pane size=1 borderless=true {
+      plugin location="zellij:tab-bar"
+    }
+    pane split_direction="vertical" {
+      pane
+      pane {
+        name "container bash"
+        command "docker"
+        args "compose" "exec" "-u" "0" "chal" "bash"
+      }
+    }
+    pane size=1 borderless=true {
+      plugin location="zellij:status-bar"
+    }
+  }
+}

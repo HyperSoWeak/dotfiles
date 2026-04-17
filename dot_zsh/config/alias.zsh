@@ -5,7 +5,7 @@ source ~/.zsh/config/guard.zsh
 
 alias sudo='sudo '
 
-alias_if_cmd kitty ssh 'kitty +kitten ssh'
+alias ssh='TERM=xterm-256color ssh'
 alias_if_cmd zeditor zed 'zeditor'
 
 # Prefer lsd when available; otherwise keep stock ls and provide portable flags.
