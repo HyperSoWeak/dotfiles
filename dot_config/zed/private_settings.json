@@ -7,26 +7,21 @@
       "args": [],
       "projects": [
         {
-          "paths": [
-            "/tmp2/b12902119"
-          ]
+          "paths": ["/tmp2/b12902119"],
         },
         {
-          "paths": [
-            "/tmp2/b12902119/ev-hw1-HyperSoWeak"
-          ]
-        }
-      ]
+          "paths": ["/tmp2/b12902119/ev-hw1-HyperSoWeak"],
+        },
+      ],
     },
     {
       "host": "meow?",
       "args": [],
-      "projects": []
-    }
+      "projects": [],
+    },
   ],
-  "restore_on_startup": "empty_tab",
   "session": {
-    "trust_all_worktrees": true
+    "trust_all_worktrees": true,
   },
   "format_on_save": "off",
   "git": {
@@ -42,7 +37,7 @@
   "agent": {
     "default_width": 360.0,
     "tool_permissions": {
-      "default": "allow"
+      "default": "allow",
     },
     "model_parameters": [],
   },
@@ -76,26 +71,26 @@
   },
   "git_panel": {
     "default_width": 240.0,
-    "sort_by_path": false
+    "sort_by_path": false,
   },
   "agent_servers": {
     "gemini": {
-      "type": "registry"
+      "type": "registry",
     },
     "claude-acp": {
       "type": "registry",
       "default_config_options": {
-        "mode": "bypassPermissions"
-      }
+        "mode": "bypassPermissions",
+      },
     },
     "codex-acp": {
       "type": "registry",
       "default_mode": "auto",
       "default_config_options": {
         "reasoning_effort": "medium",
-        "mode": "full-access"
-      }
-    }
+        "mode": "full-access",
+      },
+    },
   },
   "project_panel": {
     "default_width": 240.0,
@@ -119,12 +114,12 @@
   "theme": {
     "mode": "dark",
     "light": "One Light",
-    "dark": "Catppuccin Macchiato"
+    "dark": "Catppuccin Macchiato",
   },
   "icon_theme": {
     "mode": "light",
     "light": "Material Icon Theme",
-    "dark": "Catppuccin Mocha"
+    "dark": "Catppuccin Mocha",
   },
   "vim_mode": true,
   "base_keymap": "VSCode",
@@ -133,5 +128,16 @@
     "axes": {
       "horizontal": false,
     },
-  }
+  },
+  "lsp": {
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
+    },
+  },
 }

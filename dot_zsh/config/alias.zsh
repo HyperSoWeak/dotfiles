@@ -6,6 +6,7 @@ source ~/.zsh/config/guard.zsh
 alias sudo='sudo '
 
 alias ssh='TERM=xterm-256color ssh'
+alias kali='distrobox enter kali'
 alias_if_cmd zeditor zed 'zeditor'
 
 # Prefer lsd when available; otherwise keep stock ls and provide portable flags.

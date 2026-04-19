@@ -57,7 +57,11 @@ blankwindow {
 }
 
 .control-center {
-  background: linear-gradient(180deg, rgba(17, 19, 27, 0.96), rgba(10, 12, 18, 0.94));
+  background: linear-gradient(
+    180deg,
+    rgba(17, 19, 27, 0.96),
+    rgba(10, 12, 18, 0.94)
+  );
   border-left: 1px solid @border;
   border-bottom: 1px solid rgba(130, 170, 255, 0.12);
   color: @text;
@@ -86,28 +90,49 @@ blankwindow {
 }
 
 .notification-row .notification-background .notification {
-  background: linear-gradient(180deg, rgba(21, 24, 35, 0.9), rgba(14, 16, 24, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(21, 24, 35, 0.9),
+    rgba(14, 16, 24, 0.9)
+  );
   border: none;
   border-bottom: 1px solid rgba(130, 170, 255, 0.1);
   margin: 0;
   padding: 0;
 }
 
-.floating-notifications .notification-row:first-child .notification-background .notification,
-.control-center .notification-row:first-child .notification-background .notification {
+.floating-notifications
+  .notification-row:first-child
+  .notification-background
+  .notification,
+.control-center
+  .notification-row:first-child
+  .notification-background
+  .notification {
   border-top: 1px solid rgba(130, 170, 255, 0.1);
 }
 
 .notification-row .notification-background .notification.critical {
-  background: linear-gradient(180deg, rgba(68, 30, 37, 0.9), rgba(32, 18, 22, 0.92));
+  background: linear-gradient(
+    180deg,
+    rgba(68, 30, 37, 0.9),
+    rgba(32, 18, 22, 0.92)
+  );
   border-color: rgba(255, 117, 127, 0.22);
 }
 
 .notification-row .notification-background .notification.low {
-  background: linear-gradient(180deg, rgba(18, 20, 30, 0.86), rgba(13, 15, 22, 0.88));
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 30, 0.86),
+    rgba(13, 15, 22, 0.88)
+  );
 }
 
-.notification-row .notification-background .notification .notification-default-action {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action {
   background: transparent;
   border: none;
   color: var(--text-color);
@@ -116,58 +141,119 @@ blankwindow {
   min-height: 0;
 }
 
-.notification-row .notification-background .notification .notification-default-action:hover {
-  background: linear-gradient(180deg, rgba(38, 44, 66, 0.92), rgba(26, 30, 45, 0.92));
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(38, 44, 66, 0.92),
+    rgba(26, 30, 45, 0.92)
+  );
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content {
   background: transparent;
   padding: 0;
   margin: 0;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .image {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .image {
   border-radius: 0;
   margin: 0 12px 0 0;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .app-icon {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .app-icon {
   margin: 0 6px 0 0;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .summary {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .summary {
   color: #eef3ff;
   font-size: var(--font-size-summary);
   font-weight: 800;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .time {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .time {
   color: @text-dim;
   font-size: 12px;
   font-weight: 700;
   margin-right: 28px;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .text-box .body {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .body {
   color: @text-dim;
   font-size: var(--font-size-body);
   font-weight: 500;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content progressbar {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  progressbar {
   margin-top: 8px;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content progressbar trough {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  progressbar
+  trough {
   background: rgba(130, 170, 255, 0.08);
   min-height: 4px;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content progressbar progress {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  progressbar
+  progress {
   background: @cyan;
 }
 
-.notification-row .notification-background .notification .notification-default-action .notification-content .body-image {
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .body-image {
   background-color: transparent;
   border: none;
   box-shadow: none;
@@ -175,7 +261,10 @@ blankwindow {
   padding: 0;
 }
 
-.notification-row .notification-background .notification .notification-alt-actions {
+.notification-row
+  .notification-background
+  .notification
+  .notification-alt-actions {
   background: rgba(14, 16, 24, 0.9);
   padding: 0 12px 10px 12px;
 }
@@ -184,14 +273,22 @@ blankwindow {
   margin: 0 6px 0 0;
 }
 
-.notification-row .notification-background .notification .notification-action > button {
+.notification-row
+  .notification-background
+  .notification
+  .notification-action
+  > button {
   background: transparent;
   border: 1px solid rgba(130, 170, 255, 0.14);
   color: @text;
   padding: 6px 10px;
 }
 
-.notification-row .notification-background .notification .notification-action > button:hover {
+.notification-row
+  .notification-background
+  .notification
+  .notification-action
+  > button:hover {
   background: @bg-hover;
 }
 
@@ -219,7 +316,11 @@ blankwindow {
   padding: 8px 12px;
   color: @text;
   border-bottom: 1px solid rgba(130, 170, 255, 0.1);
-  background: linear-gradient(180deg, rgba(19, 22, 32, 0.92), rgba(14, 16, 24, 0.92));
+  background: linear-gradient(
+    180deg,
+    rgba(19, 22, 32, 0.92),
+    rgba(14, 16, 24, 0.92)
+  );
 }
 
 .notification-group .notification-group-headers {
@@ -265,8 +366,14 @@ blankwindow {
   opacity: 0.86;
 }
 
-.notification-group.collapsed:hover .notification-row:not(:only-child) .notification {
-  background: linear-gradient(180deg, rgba(38, 44, 66, 0.92), rgba(26, 30, 45, 0.92));
+.notification-group.collapsed:hover
+  .notification-row:not(:only-child)
+  .notification {
+  background: linear-gradient(
+    180deg,
+    rgba(38, 44, 66, 0.92),
+    rgba(26, 30, 45, 0.92)
+  );
 }
 
 .close-button {
@@ -295,7 +402,11 @@ blankwindow {
 .widget-volume,
 .widget-backlight,
 .widget-label {
-  background: linear-gradient(180deg, rgba(18, 20, 30, 0.74), rgba(13, 15, 22, 0.7));
+  background: linear-gradient(
+    180deg,
+    rgba(18, 20, 30, 0.74),
+    rgba(13, 15, 22, 0.7)
+  );
   border-bottom: 1px solid rgba(130, 170, 255, 0.1);
   padding: 10px 12px;
   color: @text;
@@ -347,7 +458,11 @@ blankwindow {
 }
 
 .widget-mpris .widget-mpris-player {
-  background: linear-gradient(180deg, rgba(22, 24, 36, 0.88), rgba(14, 16, 24, 0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(22, 24, 36, 0.88),
+    rgba(14, 16, 24, 0.9)
+  );
   border: 1px solid rgba(130, 170, 255, 0.14);
   box-shadow: none;
 }

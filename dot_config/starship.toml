@@ -21,6 +21,7 @@ $docker_context\
 $cmd_duration\
 $jobs\
 $line_break\
+$container\
 $character"""
 
 right_format = "$time"
@@ -28,43 +29,39 @@ right_format = "$time"
 palette = "hyper"
 
 [palettes.hyper]
-surface = "#1f2335"
-overlay = "#2a2f45"
-text = "#c8d3f5"
-muted = "#7a88cf"
-blue = "#82aaff"
-cyan = "#86e1fc"
-teal = "#4fd6be"
-green = "#a6da95"
-yellow = "#e0af68"
-orange = "#ff966c"
-red = "#ff757f"
-purple = "#c099ff"
+surface = "#171b26"
+overlay = "#23283a"
+text = "#d8e0f8"
+muted = "#8b93ad"
+blue = "#8fb5ff"
+cyan = "#7dd3fc"
+teal = "#6ee7c8"
+green = "#b7d98c"
+yellow = "#d8b574"
+orange = "#f3a37a"
+red = "#ff8b94"
+purple = "#b8a0ff"
 
 [fill]
 symbol = " "
 
 [character]
-success_symbol = "[❯](bold teal)"
+success_symbol = "[❯](bold cyan)"
 error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold yellow)"
+vimcmd_symbol = "[❮](bold orange)"
 vimcmd_visual_symbol = "[❮](bold purple)"
 vimcmd_replace_symbol = "[❮](bold red)"
 vimcmd_replace_one_symbol = "[❮](bold red)"
 
 [os]
 disabled = false
-style = "fg:muted"
+style = "bold fg:blue"
 format = "[$symbol]($style) "
 
 [os.symbols]
-Arch = "󰣇"
-Macos = "󰀵"
-Ubuntu = "󰕈"
-Debian = "󰣚"
-Fedora = "󰣛"
-NixOS = "󱄅"
-Unknown = "󰠥"
+Arch = " "
+Kali = " "
+Ubuntu = " "
 
 [hostname]
 ssh_only = true
@@ -83,7 +80,6 @@ home_symbol = "~"
 [directory.substitutions]
 "~/ntu" = "󰑴 ntu"
 "~/weak" = "󰕥 weak"
-"~/utils" = "󰆍 utils"
 "~/Downloads" = " downloads"
 
 [git_branch]
@@ -113,37 +109,37 @@ format = '([$state( $progress_current/$progress_total)]($style) )'
 
 [python]
 symbol = " "
-style = "fg:green"
+style = "fg:yellow"
 format = '[$symbol$version( ($virtualenv))]($style) '
 detect_extensions = ["py"]
 detect_files = ["pyproject.toml", "requirements.txt", ".python-version", "uv.lock"]
 
 [nodejs]
 symbol = "󰎙 "
-style = "fg:orange"
+style = "fg:green"
 format = '[$symbol$version]($style) '
 detect_files = ["package.json", ".node-version", "pnpm-lock.yaml", "yarn.lock", "package-lock.json"]
 
 [rust]
 symbol = " "
-style = "fg:red"
+style = "fg:orange"
 format = '[$symbol$version]($style) '
 detect_extensions = ["rs"]
 
 [golang]
 symbol = " "
-style = "fg:cyan"
+style = "fg:blue"
 format = '[$symbol$version]($style) '
 detect_extensions = ["go"]
 
 [deno]
 symbol = " "
-style = "fg:muted"
+style = "fg:purple"
 format = '[$symbol$version]($style) '
 
 [docker_context]
 symbol = " "
-style = "fg:blue"
+style = "fg:cyan"
 format = '[$symbol$context]($style) '
 only_with_files = false
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", "Dockerfile"]
@@ -151,14 +147,19 @@ detect_files = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "com
 [cmd_duration]
 min_time = 1200
 show_milliseconds = false
-style = "fg:muted"
-format = "[· $duration]($style) "
+style = "fg:yellow"
+format = "[󱎫 $duration]($style) "
 
 [jobs]
 symbol = "󰣖 "
 style = "fg:purple"
 number_threshold = 1
 format = "[$symbol$number]($style) "
+
+[container]
+format = "[$symbol $name]($style) "
+symbol = "⬢"
+style = "bold fg:orange"
 
 [time]
 disabled = false
