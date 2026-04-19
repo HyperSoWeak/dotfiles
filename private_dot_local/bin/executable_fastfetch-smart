@@ -12,8 +12,8 @@ fi
 
 config="$HOME/.config/fastfetch/config.jsonc"
 
-if [ "$cols" -lt 110 ]; then
-  config="$HOME/.config/fastfetch/config-small.jsonc"
+if [ "$cols" -gt 110 ]; then
+  config="$HOME/.config/fastfetch/config-big.jsonc"
 fi
 
 exec fastfetch -c "$config" "$@"
