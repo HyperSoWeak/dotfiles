@@ -1,0 +1,2 @@
+cd /home/hyper/utils/chezmoi-mousse/src
+uv run --no-dev --python 3.13 --with textual -m chezmoi_mousse

@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+cols="${COLUMNS:-}"
+
+if [ -z "$cols" ] && command -v tput >/dev/null 2>&1; then
+  cols="$(tput cols 2>/dev/null)"
+fi
+
+if [ -z "$cols" ]; then
+  cols=120
+fi
+
+config="$HOME/.config/fastfetch/config.jsonc"
+
+if [ "$cols" -lt 110 ]; then
+  config="$HOME/.config/fastfetch/config-small.jsonc"
+fi
+
+exec fastfetch -c "$config" "$@"

@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+set -eu
+
+device="${1:-intel_backlight}"
+base="/sys/class/backlight/$device"
+
+if [ ! -r "$base/brightness" ] || [ ! -r "$base/max_brightness" ]; then
+    printf '{"text":"󰃞 ?","tooltip":"backlight unavailable","class":"missing"}\n'
+    exit 0
+fi
+
+raw=$(cat "$base/brightness")
+max=$(cat "$base/max_brightness")
+
+if [ "${max:-0}" -le 0 ]; then
+    printf '{"text":"󰃞 ?","tooltip":"invalid backlight range","class":"missing"}\n'
+    exit 0
+fi
+
+raw_percent=$(awk -v raw="$raw" -v max="$max" 'BEGIN { printf "%d", (raw / max) * 100 + 0.5 }')
+perceived_percent=$(awk -v raw="$raw" -v max="$max" 'BEGIN {
+    ratio = raw / max
+    if (ratio <= 0) {
+        printf "0"
+    } else {
+        printf "%d", sqrt(ratio) * 100 + 0.5
+    }
+}')
+
+if [ "$perceived_percent" -ge 67 ]; then
+    icon="󰃠"
+elif [ "$perceived_percent" -ge 34 ]; then
+    icon="󰃟"
+else
+    icon="󰃞"
+fi
+
+tooltip=$(printf 'brightness %s%% (perceived)\\nraw panel level %s%%' "$perceived_percent" "$raw_percent")
+printf '{"text":"%s %s%%","tooltip":"%s","class":"brightness"}\n' "$icon" "$perceived_percent" "$tooltip"

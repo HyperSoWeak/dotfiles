@@ -1,0 +1,89 @@
+#!/bin/sh
+
+# Take a screenshot with grimblast, then open it in satty.
+# Saves edited screenshots to ~/screenshots.
+
+notify() {
+  if command -v notify-send >/dev/null 2>&1; then
+    notify-send "Screenshot" "$1" -a screenshot-capture
+  fi
+}
+
+require_cmd() {
+  if ! command -v "$1" >/dev/null 2>&1; then
+    notify "$1 is not installed"
+    exit 127
+  fi
+}
+
+mode=
+freeze=0
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --freeze)
+      freeze=1
+      ;;
+    region | window | screen)
+      mode=$1
+      ;;
+  esac
+  shift
+done
+
+require_cmd grimblast
+require_cmd satty
+require_cmd wl-copy
+
+if [ -z "$mode" ]; then
+  mode=region
+fi
+
+case "$mode" in
+  region)
+    grim_target=area
+    ;;
+  window)
+    grim_target=window
+    ;;
+  screen)
+    grim_target=output
+    ;;
+  *)
+    exit 0
+    ;;
+esac
+
+save_dir="$HOME/screenshots"
+timestamp=$(date +'%Y-%m-%d-%H%M%S_screenshot.png')
+save_path="$save_dir/$timestamp"
+temp_path="${XDG_RUNTIME_DIR:-/tmp}/screenshot-${timestamp}"
+
+mkdir -p "$save_dir"
+
+if [ "$freeze" -eq 1 ]; then
+  grimblast --freeze save "$grim_target" "$temp_path" || {
+    notify "failed to take screenshot"
+    exit 1
+  }
+else
+  grimblast save "$grim_target" "$temp_path" || {
+    notify "failed to take screenshot"
+    exit 1
+  }
+fi
+
+satty \
+  --filename "$temp_path" \
+  --fullscreen \
+  --output-filename "$save_path" \
+  --copy-command wl-copy
+status=$?
+
+rm -f "$temp_path"
+
+if [ "$status" -eq 0 ] && [ -f "$save_path" ]; then
+  notify "saved to $save_path"
+fi
+
+exit "$status"

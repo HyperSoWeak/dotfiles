@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+command -v brightnessctl >/dev/null 2>&1 || exit 0
+brightnessctl -s set 10% >/dev/null 2>&1

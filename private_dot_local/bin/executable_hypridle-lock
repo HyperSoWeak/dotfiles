@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+command -v hyprlock >/dev/null 2>&1 || exit 0
+pidof hyprlock >/dev/null 2>&1 || exec hyprlock

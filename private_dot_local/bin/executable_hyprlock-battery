@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+battery_dir="${1:-/sys/class/power_supply/BAT0}"
+capacity_file="$battery_dir/capacity"
+status_file="$battery_dir/status"
+
+[ -r "$capacity_file" ] || exit 0
+
+capacity=$(cat "$capacity_file" 2>/dev/null) || exit 0
+status=""
+
+if [ -r "$status_file" ]; then
+    status=$(cat "$status_file" 2>/dev/null)
+fi
+
+if [ "$status" = "Charging" ]; then
+    icon="󰂄"
+elif [ "$status" = "Full" ]; then
+    icon="󰁹"
+elif [ "$capacity" -ge 90 ]; then
+    icon="󰂂"
+elif [ "$capacity" -ge 80 ]; then
+    icon="󰂁"
+elif [ "$capacity" -ge 70 ]; then
+    icon="󰂀"
+elif [ "$capacity" -ge 60 ]; then
+    icon="󰁿"
+elif [ "$capacity" -ge 50 ]; then
+    icon="󰁾"
+elif [ "$capacity" -ge 40 ]; then
+    icon="󰁽"
+elif [ "$capacity" -ge 30 ]; then
+    icon="󰁼"
+elif [ "$capacity" -ge 20 ]; then
+    icon="󰁻"
+elif [ "$capacity" -ge 10 ]; then
+    icon="󰁺"
+else
+    icon="󰂎"
+fi
+
+printf '%s %s%%\n' "$icon" "$capacity"
