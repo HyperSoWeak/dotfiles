@@ -17,6 +17,13 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown", "text" },
+  callback = function()
+    vim.b.completion = false
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
   pattern = "*",
   callback = function()
     vim.opt_local.spell = false

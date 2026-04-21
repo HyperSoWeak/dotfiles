@@ -73,4 +73,8 @@ else
   tooltip=$(printf 'UPDATES\\nrepo %s\\naur  %s\\ntotal %s' "$repo_count" "$aur_count" "$total_count")
 fi
 
-printf '{"text":"󰚰 %s","tooltip":"%s","class":"%s"}\n' "$text_count" "$tooltip" "$class"
+if [ "$class" = "none" ]; then
+  printf '{"text":"","tooltip":"%s","class":"%s"}\n' "$tooltip" "$class"
+else
+  printf '{"text":"󰚰 %s","tooltip":"%s","class":"%s"}\n' "$text_count" "$tooltip" "$class"
+fi

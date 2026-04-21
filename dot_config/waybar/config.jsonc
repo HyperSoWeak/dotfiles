@@ -9,18 +9,21 @@
     "margin-right": 0,
     "reload_style_on_change": true,
 
-    "modules-left": ["hyprland/workspaces", "hyprland/window", "mpris"],
+    "modules-left": [
+      "idle_inhibitor",
+      "hyprland/workspaces",
+      "hyprland/window",
+      "mpris",
+    ],
     "modules-center": ["clock"],
     "modules-right": [
-      "idle_inhibitor",
+      "custom/updates",
       "pulseaudio",
-      "network",
+      "custom/power-profile",
       "cpu",
       "memory",
       "temperature",
-      "custom/backlight",
       "battery",
-      "custom/updates",
       "custom/notification",
       "tray",
     ],
@@ -144,9 +147,9 @@
 
     "network": {
       "format-wifi": "󰤨 {signalStrength}%",
-      "format-ethernet": "󰈀 wired",
-      "format-linked": "󰈀 linked",
-      "format-disconnected": "󰤭 offline",
+      "format-ethernet": "󰈀",
+      "format-linked": "󰈀",
+      "format-disconnected": "󰤭",
       "tooltip-format-wifi": "{essid}\nsignal {signalStrength}%\n{ipaddr}/{cidr}",
       "tooltip-format-ethernet": "ETHERNET\n{ifname}\n{ipaddr}/{cidr}",
       "tooltip-format-disconnected": "NETWORK\ndisconnected",
@@ -163,6 +166,19 @@
       "tooltip-format": "MEMORY\n{used:0.1f}G / {total:0.1f}G",
     },
 
+    "custom/power-profile": {
+      "exec": "/home/hyper/.local/bin/waybar-power-profile status",
+      "return-type": "json",
+      "interval": 3600,
+      "signal": 10,
+      "tooltip": true,
+      "on-click": "/home/hyper/.local/bin/waybar-power-profile cycle-next",
+      "on-click-right": "/home/hyper/.local/bin/waybar-power-profile menu",
+      "on-scroll-up": "/home/hyper/.local/bin/waybar-power-profile cycle-prev",
+      "on-scroll-down": "/home/hyper/.local/bin/waybar-power-profile cycle-next",
+      "escape": true,
+    },
+
     "temperature": {
       "thermal-zone": 8,
       "critical-threshold": 85,
@@ -172,15 +188,15 @@
       "tooltip-format": "CPU PACKAGE\n{temperatureC}°C",
     },
 
-    "custom/backlight": {
-      "exec": "/home/hyper/.local/bin/waybar-brightness",
-      "return-type": "json",
-      "interval": 300,
-      "signal": 8,
-      "on-scroll-up": "/home/hyper/.local/bin/waybar-brightness-step 5%+",
-      "on-scroll-down": "/home/hyper/.local/bin/waybar-brightness-step 5%-",
-      "tooltip": true,
-    },
+    // "custom/backlight": {
+    //   "exec": "/home/hyper/.local/bin/waybar-brightness",
+    //   "return-type": "json",
+    //   "interval": 300,
+    //   "signal": 8,
+    //   "on-scroll-up": "/home/hyper/.local/bin/waybar-brightness-step 5%+",
+    //   "on-scroll-down": "/home/hyper/.local/bin/waybar-brightness-step 5%-",
+    //   "tooltip": true,
+    // },
 
     "battery": {
       "states": {
@@ -227,7 +243,7 @@
 
     "tray": {
       "icon-size": 16,
-      "spacing": 8,
+      "spacing": 6,
     },
   },
 ]
