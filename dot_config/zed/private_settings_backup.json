@@ -39,7 +39,6 @@
   },
   "show_edit_predictions": true,
   "agent": {
-    "sidebar_side": "right",
     "dock": "right",
     "default_width": 360.0,
     "tool_permissions": {
@@ -110,7 +109,7 @@
     "file_icons": true,
   },
   "title_bar": {
-    "show_branch_status_icon": true
+    "show_branch_icon": true,
   },
   "autosave": "on_focus_change",
   "relative_line_numbers": "enabled",

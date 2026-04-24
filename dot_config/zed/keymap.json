@@ -38,6 +38,8 @@
       "alt-k": "workspace::ActivatePaneUp",
       "ctrl-p": "file_finder::Toggle",
       "alt-ctrl-w": "pane::CloseActiveItem",
+      "alt-o": "pane::ActivateNextItem",
+      "alt-i": "pane::ActivatePreviousItem",
     },
   },
   {
@@ -63,6 +65,43 @@
     "context": "(VimControl && !menu)",
     "bindings": {
       "g m": "editor::Rename",
+    },
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-alt-p": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+      "ctrl-alt-o": "multi_workspace::NextProject",
+      "ctrl-alt-i": "multi_workspace::PreviousProject",
+    },
+    "unbind": {
+      "ctrl-alt-o": [
+        "projects::OpenRecent",
+        {
+          "create_new_window": false,
+        },
+      ],
+    },
+  },
+  {
+    "unbind": {
+      "ctrl-alt-i": "dev::ToggleInspector",
+    },
+  },
+  {
+    "context": "VimControl && !menu",
+    "unbind": {
+      "ctrl-i": "pane::GoForward",
+      "ctrl-o": "pane::GoBack",
+    },
+    "bindings": {
+      "ctrl-i": "pane::GoBack",
+      "ctrl-o": "pane::GoForward",
     },
   },
 ]
