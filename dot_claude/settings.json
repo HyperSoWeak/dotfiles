@@ -1,7 +1,8 @@
 {
-  "skipDangerousModePermissionPrompt": true,
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); cwd=$(echo \"$input\" | jq -r '.workspace.current_dir // empty'); model=$(echo \"$input\" | jq -r '.model.display_name // empty'); ctx=$(echo \"$input\" | jq -r '.context_window.used_percentage // empty'); fh=$(echo \"$input\" | jq -r '.rate_limits.five_hour.used_percentage // empty'); sd=$(echo \"$input\" | jq -r '.rate_limits.seven_day.used_percentage // empty'); CYAN='\\033[0;36m'; GREEN='\\033[0;32m'; YEL='\\033[0;33m'; MAG='\\033[0;35m'; DIM='\\033[2m'; R='\\033[0m'; out=''; sep=\"${DIM} | ${R}\"; [ -n \"$cwd\" ] && out=\"${CYAN}$(basename \"$cwd\")${R}\"; [ -n \"$model\" ] && out=\"${out}${sep}${GREEN}${model}${R}\"; if [ -n \"$ctx\" ]; then ci=$(printf '%.0f' \"$ctx\"); out=\"${out}${sep}${YEL}ctx:${ci}%${R}\"; fi; rate=''; [ -n \"$fh\" ] && rate=\"5h:$(printf '%.0f' \"$fh\")%\"; [ -n \"$sd\" ] && rate=\"${rate:+${rate} }7d:$(printf '%.0f' \"$sd\")%\"; [ -n \"$rate\" ] && out=\"${out}${sep}${MAG}${rate}${R}\"; printf '%b' \"$out\""
-  }
+  },
+  "effortLevel": "medium",
+  "skipDangerousModePermissionPrompt": true
 }

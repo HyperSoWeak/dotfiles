@@ -25,10 +25,10 @@ if has hyprctl && has hyprlock; then
 fi
 
 # Quick access helpers
-alias_if_cmd code ce 'code . && exit'
-alias_if_cmd zeditor ze 'zed . && exit'
-alias_if_cmd zeditor algo 'zed ~/weak/algo/ && exit'
-alias_if_cmd zeditor hw 'zed ~/ntu/ntuhw && exit'
+alias ze='zed . && exit'
+alias algo='zed ~/weak/algo/ && exit'
+alias hw='zed ~/ntu/ntuhw && exit'
+alias binja='binaryninja'
 
 if has zeditor && has zellij; then
   alias owo='zed ~/proj/OwoJudge/ && zellij --layout ~/.config/zellij/layout/owojudge.kdl'

@@ -3,3 +3,4 @@ ZSH_CONFIG_DIR="$HOME/.zsh/config"
 for file in "$ZSH_CONFIG_DIR"/*.zsh; do
   source "$file"
 done
+
