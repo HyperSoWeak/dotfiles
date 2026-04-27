@@ -4,3 +4,4 @@ for file in "$ZSH_CONFIG_DIR"/*.zsh; do
   source "$file"
 done
 
+. "$HOME/.local/share/../bin/env"

@@ -1,132 +1,283 @@
-@define-color bg rgba(10, 12, 18, 0.94);
-@define-color bg-alt rgba(17, 19, 27, 0.98);
-@define-color bg-hover rgba(34, 39, 58, 0.96);
-@define-color bg-focus rgba(43, 49, 74, 0.92);
-@define-color border rgba(130, 170, 255, 0.18);
-@define-color text #d6def5;
-@define-color text-dim #98a5d8;
-@define-color blue #82aaff;
-@define-color cyan #86e1fc;
-@define-color teal #4fd6be;
-@define-color green #a6da95;
-@define-color yellow #e0af68;
-@define-color orange #ff966c;
-@define-color red #ff757f;
-@define-color purple #c099ff;
+@define-color bg rgba(9, 11, 17, 0.84);
+@define-color bg-solid #10131b;
+@define-color panel #171b26;
+@define-color panel-2 #1f2433;
+@define-color border rgba(127, 174, 255, 0.18);
+@define-color border-strong rgba(147, 221, 255, 0.24);
+@define-color text #e3ebff;
+@define-color muted #7f8cad;
+@define-color soft #c5d0e8;
+@define-color blue #8fb6ff;
+@define-color cyan #93ddff;
+@define-color teal #7bd8cf;
+@define-color green #abd59c;
+@define-color yellow #d7b277;
+@define-color orange #ee9a67;
+@define-color red #ff7d8c;
+@define-color purple #c7b0ff;
 
 :root {
-  --cc-bg: @bg;
+  --cc-bg: rgba(9, 11, 17, 0.96);
   --noti-border-color: @border;
-  --noti-bg: 17, 19, 27;
-  --noti-bg-alpha: 0.94;
-  --noti-bg-darker: rgba(12, 14, 20, 0.98);
-  --noti-bg-hover: @bg-hover;
-  --noti-bg-focus: @bg-focus;
-  --noti-close-bg: rgba(130, 170, 255, 0.1);
-  --noti-close-bg-hover: rgba(130, 170, 255, 0.18);
+  --noti-bg: 23, 27, 38;
+  --noti-bg-alpha: 0.92;
+  --noti-bg-darker: rgba(16, 19, 27, 0.98);
+  --noti-bg-hover: rgba(31, 36, 51, 0.9);
+  --noti-bg-focus: rgba(31, 36, 51, 0.3);
+  --noti-close-bg: rgba(127, 174, 255, 0.04);
+  --noti-close-bg-hover: rgba(127, 174, 255, 0.1);
   --text-color: @text;
-  --text-color-disabled: @text-dim;
+  --text-color-disabled: @muted;
   --bg-selected: @blue;
-  --notification-icon-size: 56px;
-  --notification-app-icon-size: 20px;
-  --notification-group-icon-size: 14px;
+  --notification-icon-size: 54px;
+  --notification-app-icon-size: 16px;
+  --notification-group-icon-size: 13px;
   --border: 1px solid var(--noti-border-color);
   --border-radius: 0px;
   --notification-shadow: none;
   --font-size-body: 13px;
   --font-size-summary: 14px;
-  --hover-transition: background 140ms ease;
+  --hover-transition: background-color 140ms ease, border-color 140ms ease,
+    color 140ms ease, opacity 140ms ease;
   --group-collapse-transition: opacity 180ms ease;
+  --state-critical: rgba(255, 125, 140, 0.34);
+  --state-warning: rgba(215, 178, 119, 0.32);
+  --state-info: rgba(147, 221, 255, 0.28);
 }
 
 * {
-  font-family: "JetBrainsMono Nerd Font", "Noto Sans";
-  font-weight: 700;
+  border: none;
   border-radius: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  box-shadow: none;
+  text-shadow: none;
+  transition: all 140ms ease;
+  font-family: "JetBrainsMono Nerd Font", "Noto Sans";
+  font-size: 13px;
+  font-weight: 700;
 }
 
 notificationwindow,
-blankwindow {
+blankwindow,
+.blank-window {
   background: transparent;
 }
 
 .floating-notifications {
+  background: transparent;
   margin-top: 0;
   margin-right: 0;
-  background: transparent;
 }
 
 .control-center {
   background: linear-gradient(
     180deg,
-    rgba(17, 19, 27, 0.96),
-    rgba(10, 12, 18, 0.94)
+    rgba(16, 19, 27, 0.98),
+    rgba(9, 11, 17, 0.97)
   );
-  border-left: 1px solid @border;
-  border-bottom: 1px solid rgba(130, 170, 255, 0.12);
   color: @text;
+  border-left: 1px solid @border;
+  border-bottom: 1px solid rgba(127, 174, 255, 0.1);
 }
 
 .control-center .control-center-list {
   background: transparent;
+  padding-top: 6px;
 }
 
 .control-center .control-center-list-placeholder {
-  color: @text-dim;
+  color: @muted;
+  opacity: 1;
+  padding: 18px 14px 12px 14px;
+}
+
+.widget {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-title,
+.widget-dnd,
+.widget-mpris,
+.widget-buttons-grid,
+.widget-inhibitors,
+.widget-menubar,
+.widget-volume,
+.widget-backlight,
+.widget-label {
+  background: transparent;
+  color: @text;
+  border-bottom: 1px solid rgba(127, 174, 255, 0.08);
+  padding: 9px 14px;
+}
+
+.widget-title {
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.widget-title > label {
+  color: @text;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.widget-title > button,
+.widget-inhibitors > button,
+.widget-menubar > .menu-button-bar > .widget-menubar-container button,
+.widget-volume button,
+.widget-backlight button,
+.widget-mpris > box > button,
+.widget-buttons-grid flowboxchild > button {
+  background: transparent;
+  color: @soft;
+  border: 1px solid rgba(127, 174, 255, 0.14);
+  min-height: 22px;
+  min-width: 22px;
+  padding: 0 8px;
+}
+
+.widget-title > button:hover,
+.widget-inhibitors > button:hover,
+.widget-menubar > .menu-button-bar > .widget-menubar-container button:hover,
+.widget-volume button:hover,
+.widget-backlight button:hover,
+.widget-mpris > box > button:hover,
+.widget-buttons-grid flowboxchild > button:hover {
+  background: rgba(127, 174, 255, 0.06);
+  color: @text;
+  border-color: rgba(147, 221, 255, 0.2);
+}
+
+.widget-dnd label,
+.widget-label > label,
+.widget-inhibitors > label {
+  color: @soft;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.widget-dnd > switch {
+  background: rgba(127, 174, 255, 0.04);
+  border: 1px solid rgba(127, 174, 255, 0.12);
+  min-width: 42px;
+  min-height: 22px;
+  margin-left: 10px;
+}
+
+.widget-dnd > switch:checked {
+  background: rgba(147, 221, 255, 0.1);
+  border-color: rgba(147, 221, 255, 0.18);
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+.widget-mpris {
+  padding-top: 8px;
+  padding-bottom: 10px;
+}
+
+.widget-mpris .widget-mpris-player {
+  margin: 0;
+  border: 1px solid rgba(127, 174, 255, 0.1);
+  background: linear-gradient(
+    180deg,
+    rgba(23, 27, 38, 0.74),
+    rgba(16, 19, 27, 0.76)
+  );
+}
+
+.widget-mpris .widget-mpris-player .mpris-background {
+  filter: blur(4px);
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay {
+  background: rgba(9, 11, 17, 0.74);
+  padding: 10px 12px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-album-art {
+  border: 1px solid rgba(127, 174, 255, 0.1);
+  -gtk-icon-size: 72px;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
+  color: @text;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
+  color: @muted;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.widget-mpris .widget-mpris-player .mpris-overlay button:hover,
+.widget-mpris > box > button:hover {
+  background: rgba(127, 174, 255, 0.06);
 }
 
 .notification-row {
   background: transparent;
   outline: none;
-  padding: 0;
 }
 
-.notification-row:focus {
+.notification-row:focus,
+.notification-group:focus {
   background: var(--noti-bg-focus);
 }
 
 .notification-row .notification-background {
+  padding: 8px 14px 0 14px;
+}
+
+.control-center .control-center-list .notification-row .notification-background {
   padding: 0;
 }
 
 .notification-row .notification-background .notification {
-  background: linear-gradient(
-    180deg,
-    rgba(21, 24, 35, 0.9),
-    rgba(14, 16, 24, 0.9)
-  );
+  background: rgba(18, 22, 31, 0.98);
   border: none;
-  border-bottom: 1px solid rgba(130, 170, 255, 0.1);
+  border-left: 1px solid rgba(147, 221, 255, 0.18);
   margin: 0;
   padding: 0;
 }
 
-.floating-notifications
-  .notification-row:first-child
-  .notification-background
-  .notification,
+.control-center .control-center-list .notification-row .notification-background .notification {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid rgba(127, 174, 255, 0.08);
+  background: rgba(19, 23, 33, 0.98);
+}
+
 .control-center
+  .control-center-list
   .notification-row:first-child
   .notification-background
   .notification {
-  border-top: 1px solid rgba(130, 170, 255, 0.1);
-}
-
-.notification-row .notification-background .notification.critical {
-  background: linear-gradient(
-    180deg,
-    rgba(68, 30, 37, 0.9),
-    rgba(32, 18, 22, 0.92)
-  );
-  border-color: rgba(255, 117, 127, 0.22);
+  border-top: 1px solid rgba(127, 174, 255, 0.08);
 }
 
 .notification-row .notification-background .notification.low {
-  background: linear-gradient(
-    180deg,
-    rgba(18, 20, 30, 0.86),
-    rgba(13, 15, 22, 0.88)
-  );
+  border-left-color: rgba(127, 174, 255, 0.14);
+}
+
+.notification-row .notification-background .notification.normal {
+  border-left-color: rgba(147, 221, 255, 0.2);
+}
+
+.notification-row .notification-background .notification.critical {
+  border-left-width: 2px;
+  border-left-color: var(--state-critical);
 }
 
 .notification-row
@@ -136,20 +287,31 @@ blankwindow {
   background: transparent;
   border: none;
   color: var(--text-color);
-  padding: 10px 12px;
+  padding: 10px 12px 10px 12px;
   margin: 0;
-  min-height: 0;
+}
+
+.control-center
+  .control-center-list
+  .notification-row
+  .notification-background
+  .notification
+  .notification-default-action {
+  padding: 11px 14px 11px 14px;
 }
 
 .notification-row
   .notification-background
   .notification
   .notification-default-action:hover {
-  background: linear-gradient(
-    180deg,
-    rgba(38, 44, 66, 0.92),
-    rgba(26, 30, 45, 0.92)
-  );
+  background: rgba(147, 221, 255, 0.035);
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action:not(:only-child) {
+  border-bottom: 1px solid rgba(147, 221, 255, 0.07);
 }
 
 .notification-row
@@ -172,9 +334,11 @@ blankwindow {
   -gtk-icon-size: var(--notification-icon-size);
   min-width: var(--notification-icon-size);
   min-height: var(--notification-icon-size);
+  margin: 0px 16px 0 0;
   padding: 0;
+  border: none;
   border-radius: 0;
-  margin: 0 12px 0 0;
+  background: transparent;
 }
 
 .notification-row
@@ -187,8 +351,11 @@ blankwindow {
   -gtk-icon-size: var(--notification-app-icon-size);
   min-width: var(--notification-app-icon-size);
   min-height: var(--notification-app-icon-size);
+  margin: 0 8px 0 0;
   padding: 0;
-  margin: 0 6px 0 0;
+  color: @muted;
+  border: none;
+  background: transparent;
 }
 
 .notification-row
@@ -196,11 +363,8 @@ blankwindow {
   .notification
   .notification-default-action
   .notification-content
-  .text-box
-  .summary {
-  color: #eef3ff;
-  font-size: var(--font-size-summary);
-  font-weight: 800;
+  .text-box label {
+  filter: none;
 }
 
 .notification-row
@@ -210,10 +374,25 @@ blankwindow {
   .notification-content
   .text-box
   .time {
-  color: @text-dim;
-  font-size: 12px;
+  color: rgba(147, 221, 255, 0.78);
+  font-size: 11px;
   font-weight: 700;
-  margin-right: 28px;
+  letter-spacing: 0.06em;
+  margin-right: 20px;
+  margin-bottom: 8px;
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .text-box
+  .summary {
+  color: @text;
+  font-size: var(--font-size-summary);
+  font-weight: 800;
+  padding-top: 0;
 }
 
 .notification-row
@@ -223,9 +402,10 @@ blankwindow {
   .notification-content
   .text-box
   .body {
-  color: @text-dim;
+  color: #d3dcf3;
   font-size: var(--font-size-body);
   font-weight: 500;
+  margin-top: 6px;
 }
 
 .notification-row
@@ -244,8 +424,8 @@ blankwindow {
   .notification-content
   progressbar
   trough {
-  background: rgba(130, 170, 255, 0.08);
-  min-height: 4px;
+  background: rgba(127, 174, 255, 0.06);
+  min-height: 3px;
 }
 
 .notification-row
@@ -255,7 +435,7 @@ blankwindow {
   .notification-content
   progressbar
   progress {
-  background: @cyan;
+  background: rgba(147, 221, 255, 0.9);
 }
 
 .notification-row
@@ -266,21 +446,91 @@ blankwindow {
   .body-image {
   background-color: transparent;
   border: none;
-  box-shadow: none;
-  margin: 0;
-  padding: 0;
+  margin-top: 8px;
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .inline-reply {
+  margin-top: 8px;
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .inline-reply
+  .inline-reply-entry {
+  background: rgba(16, 19, 27, 0.96);
+  color: @text;
+  caret-color: @text;
+  border: 1px solid rgba(127, 174, 255, 0.12);
+  padding: 6px 8px;
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .inline-reply
+  .inline-reply-button {
+  margin-left: 6px;
+  background: transparent;
+  color: @soft;
+  border: 1px solid rgba(127, 174, 255, 0.14);
+  padding: 0 10px;
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .inline-reply
+  .inline-reply-button:hover {
+  background: rgba(127, 174, 255, 0.06);
+  color: @text;
+  border-color: rgba(147, 221, 255, 0.18);
+}
+
+.notification-row
+  .notification-background
+  .notification
+  .notification-default-action
+  .notification-content
+  .inline-reply
+  .inline-reply-button:disabled {
+  background: transparent;
+  color: @muted;
+  border-color: rgba(127, 174, 255, 0.06);
 }
 
 .notification-row
   .notification-background
   .notification
   .notification-alt-actions {
-  background: rgba(14, 16, 24, 0.9);
-  padding: 0 12px 10px 12px;
+  background: rgba(14, 17, 24, 0.72);
+  padding: 7px 12px 10px 12px;
+}
+
+.control-center
+  .control-center-list
+  .notification-row
+  .notification-background
+  .notification
+  .notification-alt-actions {
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 .notification-row .notification-background .notification .notification-action {
   margin: 0 6px 0 0;
+  padding: 0;
 }
 
 .notification-row
@@ -289,9 +539,9 @@ blankwindow {
   .notification-action
   > button {
   background: transparent;
-  border: 1px solid rgba(130, 170, 255, 0.14);
   color: @text;
-  padding: 6px 10px;
+  border: 1px solid rgba(147, 221, 255, 0.16);
+  padding: 5px 10px;
 }
 
 .notification-row
@@ -299,42 +549,33 @@ blankwindow {
   .notification
   .notification-action
   > button:hover {
-  background: @bg-hover;
+  background: rgba(147, 221, 255, 0.07);
+  color: @text;
+  border-color: rgba(147, 221, 255, 0.24);
 }
 
 .notification-group {
-  background: transparent;
+  background: rgba(11, 14, 20, 0.28);
+  margin-top: 10px;
+  transition: opacity 180ms ease-in-out;
 }
 
 .notification-group .notification-group-close-button .close-button {
-  background: transparent;
-  color: @text-dim;
-  min-width: 18px;
-  min-height: 18px;
-  margin: 8px 10px 0 0;
-  padding: 0;
-}
-
-.notification-group .notification-group-close-button .close-button:hover {
-  background: rgba(255, 117, 127, 0.12);
-  color: @red;
+  margin: 8px 14px 0 0;
 }
 
 .notification-group .notification-group-buttons,
 .notification-group .notification-group-headers {
   margin: 0;
-  padding: 8px 12px;
   color: @text;
-  border-bottom: 1px solid rgba(130, 170, 255, 0.1);
-  background: linear-gradient(
-    180deg,
-    rgba(19, 22, 32, 0.92),
-    rgba(14, 16, 24, 0.92)
-  );
 }
 
 .notification-group .notification-group-headers {
-  padding-right: 6px;
+  background: rgba(40, 48, 68, 0.94);
+  border-top: 1px solid rgba(147, 221, 255, 0.16);
+  border-bottom: 1px solid rgba(147, 221, 255, 0.14);
+  border-left: 3px solid rgba(147, 221, 255, 0.42);
+  padding: 10px 14px;
 }
 
 .notification-group .notification-group-headers .notification-group-icon {
@@ -344,167 +585,93 @@ blankwindow {
 }
 
 .notification-group .notification-group-headers .notification-group-header {
-  color: #eef3ff;
-  font-size: 11px;
+  color: @text;
+  font-size: 12px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
 }
 
 .notification-group .notification-group-buttons {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  background: rgba(14, 16, 24, 0.88);
+  background: rgba(24, 29, 42, 0.98);
+  border-bottom: 1px solid rgba(147, 221, 255, 0.12);
+  padding: 6px 14px 7px 14px;
 }
 
 .notification-group .notification-group-buttons > button {
-  background: transparent;
-  border: 1px solid rgba(130, 170, 255, 0.14);
-  color: @text-dim;
-  min-width: 20px;
+  background: rgba(147, 221, 255, 0.12);
+  color: @text;
+  border: 1px solid rgba(147, 221, 255, 0.28);
+  min-width: 22px;
   min-height: 20px;
-  padding: 0 6px;
+  padding: 0 8px;
   margin-right: 6px;
-  box-shadow: none;
 }
 
 .notification-group .notification-group-buttons > button:hover {
-  background: rgba(130, 170, 255, 0.08);
+  background: rgba(147, 221, 255, 0.08);
   color: @text;
+  border-color: rgba(147, 221, 255, 0.24);
 }
 
 .notification-group.collapsed.not-expanded {
-  opacity: 0.86;
+  opacity: 1;
+}
+
+.control-center
+  .notification-group.collapsed
+  .notification-row:last-child
+  .notification-background {
+  padding-top: 4px;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification-action,
+.notification-group.collapsed .notification-row:not(:last-child) .notification-default-action {
+  opacity: 0;
+}
+
+.notification-group.collapsed .notification-row:not(:last-child) .notification {
+  border-bottom-color: transparent;
+}
+
+.notification-group.collapsed .notification-row:last-child .notification {
+  border-left-width: 3px;
+  border-left-color: rgba(147, 221, 255, 0.34);
+  background: rgba(22, 27, 38, 0.99);
 }
 
 .notification-group.collapsed:hover
   .notification-row:not(:only-child)
   .notification {
-  background: linear-gradient(
-    180deg,
-    rgba(38, 44, 66, 0.92),
-    rgba(26, 30, 45, 0.92)
-  );
+  background: rgba(23, 28, 39, 0.98);
 }
 
 .close-button {
-  background: rgba(130, 170, 255, 0.04);
-  color: @text-dim;
-  border: none;
-  box-shadow: none;
-  min-width: 22px;
-  min-height: 22px;
-  margin-top: 10px;
-  margin-right: 10px;
+  background: transparent;
+  color: @muted;
+  border: 1px solid rgba(127, 174, 255, 0.12);
+  text-shadow: none;
   padding: 0;
+  margin-top: 8px;
+  margin-right: 8px;
+  min-width: 20px;
+  min-height: 20px;
 }
 
 .close-button:hover {
-  background: rgba(130, 170, 255, 0.12);
+  background: rgba(127, 174, 255, 0.06);
   color: @text;
-}
-
-.widget-title,
-.widget-dnd,
-.widget-mpris,
-.widget-buttons-grid,
-.widget-inhibitors,
-.widget-menubar,
-.widget-volume,
-.widget-backlight,
-.widget-label {
-  background: linear-gradient(
-    180deg,
-    rgba(18, 20, 30, 0.74),
-    rgba(13, 15, 22, 0.7)
-  );
-  border-bottom: 1px solid rgba(130, 170, 255, 0.1);
-  padding: 10px 12px;
-  color: @text;
-}
-
-.widget-title > label {
-  color: @cyan;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.widget-title > button,
-.widget-dnd > switch,
-.widget-inhibitors > button,
-.widget-menubar > .menu-button-bar > .widget-menubar-container button,
-.widget-volume button,
-.widget-backlight button {
-  background: rgba(130, 170, 255, 0.04);
-  border: 1px solid rgba(130, 170, 255, 0.14);
-  color: @text;
-  box-shadow: none;
-}
-
-.widget-title > button:hover,
-.widget-inhibitors > button:hover,
-.widget-menubar > .menu-button-bar > .widget-menubar-container button:hover,
-.widget-volume button:hover,
-.widget-backlight button:hover {
-  background: @bg-hover;
-}
-
-.widget-dnd label,
-.widget-label > label,
-.widget-inhibitors > label {
-  color: @text-dim;
-}
-
-.widget-dnd switch {
-  background: rgba(130, 170, 255, 0.08);
-  border: 1px solid rgba(130, 170, 255, 0.14);
-}
-
-.widget-dnd switch:checked {
-  background: rgba(79, 214, 190, 0.18);
-}
-
-.widget-dnd switch slider {
-  background: @text;
-}
-
-.widget-mpris .widget-mpris-player {
-  background: linear-gradient(
-    180deg,
-    rgba(22, 24, 36, 0.88),
-    rgba(14, 16, 24, 0.9)
-  );
-  border: 1px solid rgba(130, 170, 255, 0.14);
-  box-shadow: none;
-}
-
-.widget-mpris .widget-mpris-player .mpris-overlay {
-  background-color: rgba(10, 12, 18, 0.7);
-}
-
-.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-title {
-  color: @text;
-  font-weight: 800;
-}
-
-.widget-mpris .widget-mpris-player .mpris-overlay .widget-mpris-subtitle {
-  color: @text-dim;
-}
-
-.widget-mpris > box > button {
-  background: transparent;
-  border: 1px solid rgba(130, 170, 255, 0.14);
-  color: @text;
-}
-
-.widget-mpris > box > button:hover {
-  background: @bg-hover;
+  border-color: rgba(147, 221, 255, 0.18);
 }
 
 trough {
-  background: rgba(130, 170, 255, 0.08);
-  min-height: 6px;
+  background: rgba(127, 174, 255, 0.06);
+  min-height: 5px;
 }
 
 highlight {
   background: @blue;
+}
+
+.widget-volume row image {
+  color: @muted;
 }

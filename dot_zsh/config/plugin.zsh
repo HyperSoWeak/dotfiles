@@ -22,4 +22,5 @@ eval_if_cmd starship 'eval "$(starship init zsh)"'
 eval_if_cmd zoxide 'eval "$(zoxide init zsh)"'
 
 # fastfetch at shell startup
-eval_if_cmd fastfetch-smart 'fastfetch-smart'
+fastfetch
+# eval_if_cmd fastfetch-smart 'fastfetch-smart'

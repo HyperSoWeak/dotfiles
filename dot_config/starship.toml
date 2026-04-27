@@ -5,92 +5,88 @@ command_timeout = 900
 scan_timeout = 25
 
 format = """
-$os\
 $hostname\
 $directory\
 $git_branch\
 $git_status\
 $git_state\
-$fill\
 $python\
 $nodejs\
 $rust\
 $golang\
 $deno\
 $docker_context\
+$line_break\
 $cmd_duration\
 $jobs\
-$line_break\
 $container\
 $character"""
 
-right_format = "$time"
+palette = "macchiato"
 
-palette = "hyper"
-
-[palettes.hyper]
-surface = "#171b26"
-overlay = "#23283a"
-text = "#d8e0f8"
-muted = "#8b93ad"
-blue = "#8fb5ff"
-cyan = "#7dd3fc"
-teal = "#6ee7c8"
-green = "#b7d98c"
-yellow = "#d8b574"
-orange = "#f3a37a"
-red = "#ff8b94"
-purple = "#b8a0ff"
-
-[fill]
-symbol = " "
+[palettes.macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"
 
 [character]
-success_symbol = "[❯](bold cyan)"
-error_symbol = "[❯](bold red)"
-vimcmd_symbol = "[❮](bold orange)"
-vimcmd_visual_symbol = "[❮](bold purple)"
-vimcmd_replace_symbol = "[❮](bold red)"
-vimcmd_replace_one_symbol = "[❮](bold red)"
-
-[os]
-disabled = false
-style = "bold fg:blue"
-format = "[$symbol]($style) "
-
-[os.symbols]
-Arch = " "
-Kali = " "
-Ubuntu = " "
+success_symbol = "[❱](bold lavender)"
+error_symbol = "[❱](bold red)"
+vimcmd_symbol = "[❰](bold mauve)"
+vimcmd_visual_symbol = "[❰](bold pink)"
+vimcmd_replace_symbol = "[❰](bold maroon)"
+vimcmd_replace_one_symbol = "[❰](bold maroon)"
 
 [hostname]
 ssh_only = true
-style = "fg:yellow"
+style = "fg:peach"
 format = "[@$hostname]($style) "
 
 [directory]
 style = "bold fg:text"
 format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 3
+truncate_to_repo = true
 truncation_symbol = "…/"
+before_repo_root_style = "fg:overlay1"
+repo_root_style = "bold fg:text"
+repo_root_format = "[ ](fg:overlay1)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
 read_only = " 󰌾"
 read_only_style = "fg:red"
 home_symbol = "~"
 
-[directory.substitutions]
-"~/ntu" = "󰑴 ntu"
-"~/weak" = "󰕥 weak"
-"~/Downloads" = " downloads"
-
 [git_branch]
 symbol = " "
-style = "bold fg:teal"
+style = "bold fg:mauve"
 format = "[$symbol$branch]($style) "
 truncation_length = 32
 truncation_symbol = "…"
 
 [git_status]
-style = "fg:yellow"
+style = "fg:red"
 format = "([$all_status$ahead_behind]($style) )"
 conflicted = "=${count}"
 ahead = "⇡${count}"
@@ -104,7 +100,7 @@ renamed = "»${count}"
 deleted = "✘${count}"
 
 [git_state]
-style = "fg:yellow"
+style = "fg:maroon"
 format = '([$state( $progress_current/$progress_total)]($style) )'
 
 [python]
@@ -122,7 +118,7 @@ detect_files = ["package.json", ".node-version", "pnpm-lock.yaml", "yarn.lock", 
 
 [rust]
 symbol = " "
-style = "fg:orange"
+style = "fg:peach"
 format = '[$symbol$version]($style) '
 detect_extensions = ["rs"]
 
@@ -134,12 +130,12 @@ detect_extensions = ["go"]
 
 [deno]
 symbol = " "
-style = "fg:purple"
+style = "fg:teal"
 format = '[$symbol$version]($style) '
 
 [docker_context]
 symbol = " "
-style = "fg:cyan"
+style = "fg:sapphire"
 format = '[$symbol$context]($style) '
 only_with_files = false
 detect_files = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml", "Dockerfile"]
@@ -147,22 +143,16 @@ detect_files = ["docker-compose.yml", "docker-compose.yaml", "compose.yml", "com
 [cmd_duration]
 min_time = 1200
 show_milliseconds = false
-style = "fg:yellow"
+style = "fg:rosewater"
 format = "[󱎫 $duration]($style) "
 
 [jobs]
 symbol = "󰣖 "
-style = "fg:purple"
+style = "fg:pink"
 number_threshold = 1
 format = "[$symbol$number]($style) "
 
 [container]
 format = "[$symbol $name]($style) "
 symbol = "⬢"
-style = "bold fg:orange"
-
-[time]
-disabled = false
-time_format = "%H:%M"
-style = "fg:muted"
-format = "[$time]($style)"
+style = "fg:flamingo"

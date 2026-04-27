@@ -6,6 +6,8 @@ HISTSIZE=100000
 SAVEHIST=100000
 unsetopt beep
 bindkey -e
+bindkey -v
+export KEYTIMEOUT=1
 setopt INC_APPEND_HISTORY
 setopt INC_APPEND_HISTORY_TIME
 setopt HIST_IGNORE_DUPS

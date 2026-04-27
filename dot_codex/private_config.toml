@@ -18,5 +18,17 @@ trust_level = "trusted"
 [projects."/home/hyper/ntu/114-2/CSL/lab/lab2"]
 trust_level = "trusted"
 
+[projects."/home/hyper/proj/council/council.csie-frontend"]
+trust_level = "trusted"
+
+[projects."/home/hyper/proj/ytp-hackathon-2026"]
+trust_level = "trusted"
+
+[projects."/home/hyper/tmp/hack"]
+trust_level = "trusted"
+
 [tui]
 status_line = ["model-with-reasoning", "context-used", "five-hour-limit", "weekly-limit", "used-tokens", "project-root", "git-branch"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4

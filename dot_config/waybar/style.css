@@ -63,7 +63,7 @@ window#waybar {
 }
 
 #workspaces {
-  padding: 0 2px 0 6px;
+  padding: 0 6px;
   min-width: 0;
 }
 
