@@ -99,7 +99,7 @@
 
     "hyprland/window": {
       "format": "{}",
-      "max-length": 36,
+      "max-length": 28,
       "rewrite": {
         "": "",
       },
@@ -114,10 +114,10 @@
       "tooltip": true,
       "tooltip-format": "NOW PLAYING\n{title}\n{artist}",
       "tooltip-format-paused": "PAUSED\n{title}\n{artist}",
-      "title-len": 24,
-      "artist-len": 18,
+      "title-len": 18,
+      "artist-len": 16,
       "album-len": 0,
-      "dynamic-len": 42,
+      "dynamic-len": 32,
       "dynamic-order": ["title", "artist"],
       "dynamic-importance-order": ["artist", "title"],
       "dynamic-separator": " · ",
@@ -130,7 +130,7 @@
       "on-click": "playerctl play-pause",
       "on-click-middle": "playerctl previous",
       "on-click-right": "playerctl next",
-      "max-length": 48,
+      "max-length": 32,
     },
 
     "clock": {

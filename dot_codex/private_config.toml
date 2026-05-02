@@ -27,8 +27,15 @@ trust_level = "trusted"
 [projects."/home/hyper/tmp/hack"]
 trust_level = "trusted"
 
+[projects."/home/hyper/ntu/council/2026_TTCPC"]
+trust_level = "trusted"
+
 [tui]
 status_line = ["model-with-reasoning", "context-used", "five-hour-limit", "weekly-limit", "used-tokens", "project-root", "git-branch"]
+theme = "catppuccin-macchiato"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+
+[notice]
+hide_rate_limit_model_nudge = true
