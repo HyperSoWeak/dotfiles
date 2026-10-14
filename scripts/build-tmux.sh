@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build the latest tmux into ~/.local without root.
-# libevent and ncurses are built statically alongside so no -dev packages are needed;
-# only a C compiler and make are required.
+# libevent and ncurses are built statically alongside (and byacc if no yacc is present)
+# so no -dev packages are needed; only a C compiler and make are required.
 #
 # Usage: scripts/build-tmux.sh
 
@@ -9,6 +9,7 @@ set -euo pipefail
 
 LIBEVENT_VERSION=2.1.12-stable
 NCURSES_VERSION=6.5
+BYACC_VERSION=20241231
 
 prefix="$HOME/.local"
 deps="$HOME/.local/opt/tmux-deps"
@@ -27,8 +28,17 @@ if [[ -x $prefix/bin/tmux ]] && [[ $("$prefix/bin/tmux" -V) == "tmux $tmux_versi
     exit 0
 fi
 
+export PATH="$deps/bin:$PATH"
 echo "building tmux $tmux_version (libevent $LIBEVENT_VERSION, ncurses $NCURSES_VERSION)"
 cd "$work"
+
+# tmux's configure requires yacc even for release tarballs.
+if ! command -v yacc >/dev/null && ! command -v bison >/dev/null && ! command -v byacc >/dev/null; then
+    fetch "https://invisible-island.net/archives/byacc/byacc-$BYACC_VERSION.tgz"
+    (cd "byacc-$BYACC_VERSION" &&
+        ./configure --prefix="$deps" >/dev/null &&
+        make -j"$jobs" >/dev/null && make install >/dev/null)
+fi
 
 fetch "https://github.com/libevent/libevent/releases/download/release-$LIBEVENT_VERSION/libevent-$LIBEVENT_VERSION.tar.gz"
 (cd "libevent-$LIBEVENT_VERSION" &&
@@ -42,11 +52,13 @@ fetch "https://ftp.gnu.org/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz"
         --enable-pc-files --with-pkg-config-libdir="$deps/lib/pkgconfig" \
         --without-ada --without-cxx --without-manpages --without-tests --disable-db-install >/dev/null &&
     make -j"$jobs" >/dev/null && make install >/dev/null)
+# Without pkg-config, tmux's configure always appends -lncurses even after finding ncursesw.
+ln -sf libncursesw.a "$deps/lib/libncurses.a"
 
 fetch "https://github.com/tmux/tmux/releases/download/$tmux_version/tmux-$tmux_version.tar.gz"
 (cd "tmux-$tmux_version" &&
     PKG_CONFIG_PATH="$deps/lib/pkgconfig" \
-        CFLAGS="-I$deps/include -I$deps/include/ncursesw" \
+        CPPFLAGS="-I$deps/include -I$deps/include/ncursesw" \
         LDFLAGS="-L$deps/lib" \
         ./configure --prefix="$prefix" >/dev/null &&
     make -j"$jobs" >/dev/null && make install >/dev/null)
