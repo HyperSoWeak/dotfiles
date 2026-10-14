@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Pick a tmux session or project directory with fzf and switch to it.
+# A directory without a session gets a new session named after it.
+#
+# Usage: tmux-sessionizer
+
+set -euo pipefail
+
+# Session names may not contain '.' or ':'.
+session_name() { basename "$1" | tr '.:' '__'; }
+
+list() {
+    local mauve=$'\e[38;2;198;160;246m' grey=$'\e[38;2;110;115;141m' reset=$'\e[0m'
+
+    tmux list-sessions -F '#{session_last_attached} #S #{session_windows}' 2>/dev/null |
+        sort -rn |
+        while read -r _ name windows; do
+            printf 's\t%s\t%s %s  %s(%s windows)%s\n' "$name" "$mauve" "$name" "$grey" "$windows" "$reset"
+        done
+
+    {
+        zoxide query -l 2>/dev/null || true
+        for dir in ~/proj/*/ ~/.local/src/*/; do
+            [[ -d $dir ]] && printf '%s\n' "${dir%/}"
+        done
+    } | awk '!seen[$0]++' |
+        while read -r dir; do
+            printf 'd\t%s\t  %s\n' "$dir" "${dir/#$HOME/\~}"
+        done
+}
+
+choice=$(list | fzf --ansi --delimiter '\t' --with-nth 3 --no-sort \
+    --layout reverse --prompt 'session > ' --info inline-right \
+    --color 'bg+:#363a4f,fg+:#cad3f5,hl:#eed49f,hl+:#eed49f,pointer:#c6a0f6,prompt:#c6a0f6,info:#6e738d') || exit 0
+
+kind=$(cut -f1 <<<"$choice")
+target=$(cut -f2 <<<"$choice")
+
+if [[ $kind == d ]]; then
+    dir=$target
+    target=$(session_name "$dir")
+    tmux has-session -t "=$target" 2>/dev/null || tmux new-session -d -s "$target" -c "$dir"
+fi
+
+if [[ -n ${TMUX:-} ]]; then
+    tmux switch-client -t "=$target"
+else
+    tmux attach-session -t "=$target"
+fi
