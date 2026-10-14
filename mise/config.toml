@@ -1,0 +1,12 @@
+# CLI tools for machines where pacman is not available (Debian/Ubuntu, or no sudo).
+[tools]
+neovim = "latest"
+lazygit = "latest"
+btop = "latest"
+fzf = "latest"
+ripgrep = "latest"
+fd = "latest"
+starship = "latest"
+zoxide = "latest"
+lsd = "latest"
+fastfetch = "latest"
