@@ -24,7 +24,7 @@ LINKS=(
     "starship/starship.toml:$HOME/.config/starship.toml"
     "nvim:$HOME/.config/nvim"
     "btop/btop.conf:$HOME/.config/btop/btop.conf"
-    "btop/themes:$HOME/.config/btop/themes"
+    "btop/themes/catppuccin_macchiato.theme:$HOME/.config/btop/themes/catppuccin_macchiato.theme"
     "lazygit/config.yml:$HOME/.config/lazygit/config.yml"
     "fastfetch/config.jsonc:$HOME/.config/fastfetch/config.jsonc"
     "git/.gitconfig:$HOME/.gitconfig"
