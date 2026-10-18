@@ -3,6 +3,9 @@
 -- Add any additional options here
 
 if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+  -- Animations redraw every frame over the network and feel laggy.
+  vim.g.snacks_animate = false
+
   local osc52 = require("vim.ui.clipboard.osc52")
 
   vim.g.clipboard = {
