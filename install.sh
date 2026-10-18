@@ -64,7 +64,13 @@ for entry in "${LINKS[@]}"; do
     src="$DOTFILES/${entry%%:*}"
     dst="${entry#*:}"
     [[ -L $dst && $(readlink "$dst") == "$src" ]] && continue
-    mkdir -p "$(dirname "$dst")"
+    dir=$(dirname "$dst")
+    # A directory linked by an older LINKS entry would make $dst resolve into this repo.
+    if [[ -L $dir ]]; then
+        mv "$dir" "$dir$backup_suffix"
+        log "backup $dir -> $dir$backup_suffix"
+    fi
+    mkdir -p "$dir"
     if [[ -e $dst || -L $dst ]]; then
         mv "$dst" "$dst$backup_suffix"
         log "backup $dst -> $dst$backup_suffix"
