@@ -35,8 +35,7 @@ Running programs need a reload: `exec zsh`, `prefix r` in tmux, restart nvim.
 
 - btop does not save settings on exit (`save_config_on_exit = false`), so changes made in its UI
   do not dirty this repo. Edit `btop/btop.conf` instead.
-- nvim uses the caelestia colorscheme when `~/.local/state/caelestia/scheme.json` exists
-  (desktop), and Catppuccin Macchiato otherwise, matching tmux and starship.
+- tmux, starship, nvim and btop all use Catppuccin Macchiato.
 
 ## Per-machine overrides
 
