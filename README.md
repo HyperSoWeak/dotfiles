@@ -8,7 +8,7 @@ Desktop configs (Hyprland, Ghostty, `~/.zshrc.local`, …) live in `dotfiles-des
 ## Install
 
 ```bash
-git clone https://github.com/<you>/dotfiles ~/.dotfiles
+git clone https://github.com/HyperSoWeak/dotfiles ~/.dotfiles
 ~/.dotfiles/install.sh            # add --no-sudo to skip sudo entirely
 ```
 
@@ -22,10 +22,21 @@ Configs are symlinked from this repo; existing files are moved to `*.bak-<timest
 
 ## Update
 
-```bash
-git -C ~/.dotfiles pull && ~/.dotfiles/install.sh
-mise up                           # non-pacman machines
-```
+| Changed | Run on each machine |
+|---|---|
+| An existing config file | `git -C ~/.dotfiles pull` (configs are symlinks, so this is enough) |
+| A new file in `LINKS`, a new tool, or a new tmux / zsh plugin release | `git -C ~/.dotfiles pull && ~/.dotfiles/install.sh` |
+| Tool versions (non-pacman machines) | `mise up` |
+| nvim plugin versions (`lazy-lock.json`) | `:Lazy restore` inside nvim |
+
+Running programs need a reload: `exec zsh`, `prefix r` in tmux, restart nvim.
+
+## Notes
+
+- btop does not save settings on exit (`save_config_on_exit = false`), so changes made in its UI
+  do not dirty this repo. Edit `btop/btop.conf` instead.
+- nvim uses the caelestia colorscheme when `~/.local/state/caelestia/scheme.json` exists
+  (desktop), and Catppuccin Macchiato otherwise, matching tmux and starship.
 
 ## Per-machine overrides
 
