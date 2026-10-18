@@ -1,12 +1,9 @@
+-- Catppuccin Macchiato, matching tmux and starship.
 return {
   {
-    "folke/tokyonight.nvim",
-    opts = {
-      transparent = true,
-      styles = {
-        sidebars = "transparent",
-        floats = "transparent",
-      },
-    },
+    "catppuccin/nvim",
+    name = "catppuccin",
+    opts = { flavour = "macchiato", transparent_background = true },
   },
+  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
 }
