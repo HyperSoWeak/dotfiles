@@ -25,6 +25,8 @@ LINKS=(
     "nvim:$HOME/.config/nvim"
     "btop/btop.conf:$HOME/.config/btop/btop.conf"
     "btop/themes/catppuccin_macchiato.theme:$HOME/.config/btop/themes/catppuccin_macchiato.theme"
+    "lsd/config.yaml:$HOME/.config/lsd/config.yaml"
+    "lsd/themes/catppuccin-macchiato.yaml:$HOME/.config/lsd/themes/catppuccin-macchiato.yaml"
     "lazygit/config.yml:$HOME/.config/lazygit/config.yml"
     "fastfetch/config.jsonc:$HOME/.config/fastfetch/config.jsonc"
     "git/.gitconfig:$HOME/.gitconfig"
