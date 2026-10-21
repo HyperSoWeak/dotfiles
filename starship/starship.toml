@@ -68,13 +68,13 @@ vimcmd_replace_one_symbol = "[❰](bold maroon)"
 
 [username]
 show_always = false
-style_user = "fg:peach"
+style_user = "fg:lavender"
 style_root = "bold fg:red"
-format = "[$user]($style) "
+format = "[$user]($style)"
 
 [hostname]
 ssh_only = true
-style = "fg:peach"
+style = "bold fg:red"
 format = "[@$hostname]($style) "
 
 [directory]
@@ -194,7 +194,7 @@ format = "[$symbol$number]($style) "
 [container]
 format = "[$symbol $name]($style) "
 symbol = "⬢"
-style = "fg:flamingo"
+style = "fg:sky"
 
 [status]
 disabled = false
@@ -205,5 +205,5 @@ format = "[$symbol$status( $signal_name)]($style) "
 [sudo]
 disabled = false
 symbol = "󰌿 "
-style = "fg:yellow"
+style = "fg:red"
 format = "[$symbol]($style)"
