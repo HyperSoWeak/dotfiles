@@ -71,8 +71,7 @@ alias ls='lsd'
 alias ll='lsd -lh'
 alias la='lsd -lhA'
 
-alias vim='nvim'
-alias v='nvim'
+alias ff='fastfetch'
 
 # ------------------------------------------------------------------ Functions
 mkcd() {
