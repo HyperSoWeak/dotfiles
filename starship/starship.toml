@@ -68,13 +68,13 @@ vimcmd_replace_one_symbol = "[❰](bold maroon)"
 
 [username]
 show_always = false
-style_user = "fg:lavender"
+style_user = "fg:sapphire"
 style_root = "bold fg:red"
 format = "[$user]($style)"
 
 [hostname]
 ssh_only = true
-style = "bold fg:red"
+style = "fg:sapphire"
 format = "[@$hostname]($style) "
 
 [directory]
