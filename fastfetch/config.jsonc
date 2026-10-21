@@ -24,54 +24,65 @@
       "type": "os",
     },
     {
-      "key": "║ {#32}󰌢 machine {#keys}║",
+      "key": "║ {#32} vendor  {#keys}║",
       "type": "host",
+      "format": "{vendor}",
     },
     {
-      "key": "║ {#33} kernel  {#keys}║",
+      "key": "║ {#33}󰌢 machine {#keys}║",
+      "type": "host",
+      "format": "{name}",
+    },
+    {
+      "key": "║ {#34} kernel  {#keys}║",
       "type": "kernel",
     },
     {
-      "key": "║ {#34}󰏗 package {#keys}║",
+      "key": "║ {#35}󰏗 package {#keys}║",
       "type": "packages",
     },
     {
-      "key": "║ {#35} shell   {#keys}║",
+      "key": "║ {#31} shell   {#keys}║",
       "type": "shell",
     },
     {
-      "key": "║ {#31} session {#keys}║",
+      "key": "║ {#32} session {#keys}║",
       "type": "wm",
     },
     {
-      "key": "║ {#32} term    {#keys}║",
+      "key": "║ {#33} term    {#keys}║",
       "type": "terminal",
     },
     {
-      "key": "║ {#33}󰍛 cpu     {#keys}║",
+      "key": "║ {#34}󰍛 cpu     {#keys}║",
       "type": "cpu",
     },
     {
-      "key": "║ {#34}󰊴 gpu     {#keys}║",
+      "key": "║ {#35}󰊴 gpu     {#keys}║",
       "type": "gpu",
     },
     {
-      "key": "║ {#35} memory  {#keys}║",
+      "key": "║ {#31} memory  {#keys}║",
       "type": "memory",
     },
     {
-      "key": "║ {#31}󰉉 disk    {#keys}║",
+      "key": "║ {#32}󰉉 disk    {#keys}║",
       "type": "disk",
       "folders": "/",
     },
     {
-      "key": "║ {#32}󰍹 display {#keys}║",
+      "key": "║ {#33}󰍹 display {#keys}║",
       "type": "display",
       "format": "{1}x{2} @ {3}Hz [{7}]",
     },
     {
-      "key": "║ {#33}󰅐 uptime  {#keys}║",
+      "key": "║ {#34}󰅐 uptime  {#keys}║",
       "type": "uptime",
+    },
+    {
+      "key": "║ {#35}󰁹 battery {#keys}║",
+      "type": "battery",
+      "format": "{capacity} [{status}]",
     },
     {
       "key": "╠═══════════╣",
