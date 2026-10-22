@@ -15,6 +15,7 @@ setopt HIST_REDUCE_BLANKS
 unsetopt beep
 
 # ---------------------------------------------------------------- Environment
+export SUDO_EDITOR=$(command -v nvim)
 export EDITOR=nvim
 export VISUAL=nvim
 
@@ -72,6 +73,7 @@ alias ll='lsd -lh'
 alias la='lsd -lhA'
 
 alias ff='fastfetch'
+alias lg='lazygit'
 
 # ------------------------------------------------------------------ Functions
 mkcd() {
