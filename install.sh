@@ -35,6 +35,8 @@ LINKS=(
     "ai/AGENTS.md:$HOME/.config/AGENTS.md"
     "ai/AGENTS.md:$HOME/.claude/CLAUDE.md"
     "ai/AGENTS.md:$HOME/.codex/AGENTS.md"
+    "ai/claude/settings.json:$HOME/.claude/settings.json"
+    "ai/claude/statusline-command.sh:$HOME/.claude/statusline-command.sh"
 )
 
 log() { printf '\033[1;35m==>\033[0m %s\n' "$*"; }

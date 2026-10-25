@@ -1,0 +1,47 @@
+{
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "skillOverrides": {
+    "planning-with-files-zht": "off",
+    "pi-planning-with-files": "off",
+    "find-skills": "off",
+    "ralph-loop": "off",
+    "using-superpowers": "off",
+    "requesting-code-review": "off",
+    "systematic-debugging": "off",
+    "writing-skills": "off",
+    "grill-me": "off",
+    "receiving-code-review": "off",
+    "verification-before-completion": "off",
+    "graphify": "off",
+    "dispatching-parallel-agents": "off",
+    "test-driven-development": "off",
+    "person-osint": "off",
+    "ui-ux-pro-max": "off",
+    "git-commit": "off",
+    "code-simplifier": "off",
+    "code-review": "off",
+    "webapp-testing": "off",
+    "using-git-worktrees": "off",
+    "finishing-a-development-branch": "off",
+    "executing-plans": "off",
+    "writing-plans": "off",
+    "subagent-driven-development": "off"
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "effortLevel": "high",
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "normal",
+  "agentPushNotifEnabled": true,
+  "switchModelsOnFlag": true,
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  }
+}
