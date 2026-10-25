@@ -32,6 +32,9 @@ LINKS=(
     "git/.gitconfig:$HOME/.gitconfig"
     "mise/config.toml:$HOME/.config/mise/config.toml"
     "bin/tmux-sessionizer:$HOME/.local/bin/tmux-sessionizer"
+    "ai/AGENTS.md:$HOME/.config/AGENTS.md"
+    "ai/AGENTS.md:$HOME/.claude/CLAUDE.md"
+    "ai/AGENTS.md:$HOME/.codex/AGENTS.md"
 )
 
 log() { printf '\033[1;35m==>\033[0m %s\n' "$*"; }
