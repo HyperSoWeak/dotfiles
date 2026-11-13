@@ -8,7 +8,7 @@ set -euo pipefail
 
 DOTFILES=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-PACMAN_PACKAGES=(zsh git curl unzip base-devel tmux neovim btop lazygit fzf ripgrep fd starship zoxide lsd fastfetch)
+PACMAN_PACKAGES=(zsh git curl unzip base-devel tmux neovim btop lazygit fzf ripgrep fd starship zoxide lsd fastfetch github-cli)
 APT_PACKAGES=(zsh git curl ca-certificates tar unzip build-essential)
 
 ZSH_PLUGINS=(
