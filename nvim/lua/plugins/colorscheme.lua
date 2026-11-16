@@ -5,5 +5,5 @@ return {
     name = "catppuccin",
     opts = { flavour = "macchiato", transparent_background = true },
   },
-  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin-macchiato" } },
 }
