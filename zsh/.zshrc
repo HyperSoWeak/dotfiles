@@ -18,8 +18,6 @@ unsetopt beep
 export SUDO_EDITOR=$(command -v nvim)
 export EDITOR=nvim
 export VISUAL=nvim
-# Use pacman's chromium instead of agent-browser's bundled Chrome for Testing.
-[[ -x /usr/bin/chromium ]] && export AGENT_BROWSER_EXECUTABLE_PATH=/usr/bin/chromium
 
 typeset -U path PATH
 # mise shims: tools installed by mise on machines without pacman.
