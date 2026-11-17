@@ -2,6 +2,7 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      image = {},
       dashboard = {
         preset = {
           header = [[
@@ -48,5 +49,20 @@ return {
         },
       },
     },
+  },
+  {
+    "folke/snacks.nvim",
+    opts = function()
+      -- snacks.image probes the terminal with an escape sequence. Inside tmux with
+      -- extended-keys "always", the reply gets typed into the buffer as text; upstream
+      -- only handles "on" (folke/snacks.nvim#2332), so skip the probe for ghostty.
+      if vim.env.TMUX and vim.env.GHOSTTY_RESOURCES_DIR then
+        local term = require("snacks.image.terminal")
+        term._terminal = { terminal = "ghostty", version = "unknown" }
+        term.transform = function(data)
+          return ("\027Ptmux;" .. data:gsub("\027", "\027\027")) .. "\027\\"
+        end
+      end
+    end,
   },
 }
