@@ -22,3 +22,6 @@ if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
 end
 
 vim.opt.clipboard:append("unnamedplus")
+
+-- Don't reformat on save; avoids noisy diffs in AI-written files.
+vim.g.autoformat = false
