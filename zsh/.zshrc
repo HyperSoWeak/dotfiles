@@ -100,7 +100,9 @@ detach() {
     return 1
   fi
 
-  nohup "$@" >/dev/null 2>&1 & disown
+  # Output goes to /dev/null, so a typo would otherwise fail silently.
+  whence -- "$1" >/dev/null || { echo "detach: command not found: $1"; return 127; }
+  nohup "$@" >/dev/null 2>&1 &!
 }
 
 # Pull dotfiles, re-run install.sh (links, packages, zsh plugins), upgrade mise tools,
