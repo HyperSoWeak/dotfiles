@@ -22,6 +22,8 @@ Configs are symlinked from this repo; existing files are moved to `*.bak-<timest
 
 ## Update
 
+Run `updot` (add `--no-sudo` if needed) to do all of the below at once and reload zsh.
+
 | Changed | Run on each machine |
 |---|---|
 | An existing config file | `git -C ~/.dotfiles pull` (configs are symlinks, so this is enough) |

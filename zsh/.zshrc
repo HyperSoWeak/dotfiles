@@ -103,6 +103,19 @@ detach() {
   nohup "$@" >/dev/null 2>&1 & disown
 }
 
+# Pull dotfiles, re-run install.sh (links, packages, zsh plugins), upgrade mise tools,
+# sync nvim plugins to lazy-lock.json, then reload zsh. Args go to install.sh.
+updot() {
+  local dotfiles="$HOME/.dotfiles"
+  git -C "$dotfiles" pull --ff-only || return
+  "$dotfiles/install.sh" "$@" || return
+  if command -v mise >/dev/null; then
+    mise up || return
+  fi
+  nvim --headless '+Lazy! restore' +qa || return
+  exec zsh
+}
+
 # ---------------------------------------------------------- Optional profiles
 # A machine may opt into the tracked daily profile from ~/.zshrc.local:
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
