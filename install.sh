@@ -46,9 +46,11 @@ die() { printf '\033[1;31merror:\033[0m %s\n' "$*" >&2; exit 1; }
 use_sudo=1
 [[ ${1:-} == --no-sudo ]] && use_sudo=0
 
+# sudo -v prompts if any matching sudoers rule needs a password (e.g. %sudo next to a
+# cloud-init NOPASSWD rule), even when plain sudo would not; try non-interactively first.
 if (( EUID == 0 )); then
     SUDO=()
-elif (( use_sudo )) && command -v sudo >/dev/null && sudo -v 2>/dev/null; then
+elif (( use_sudo )) && command -v sudo >/dev/null && { sudo -n true 2>/dev/null || sudo -v 2>/dev/null; }; then
     SUDO=(sudo)
 else
     use_sudo=0
