@@ -107,15 +107,15 @@ detach() {
 
 # Toggle passwordless sudo for the current user.
 # Usage: nopasswd [on|off|status]   (no arg = toggle)
-nopw() {
+nopasswd() {
   local f=/etc/sudoers.d/10-nopasswd-$USER
-  local cmd=${1:-toggle}
+  local cmd=${1:-toggle} rc
 
-  # -k ignores cached credentials, so this only succeeds when NOPASSWD is active
-  _nopasswd_on() { sudo -kn true 2>/dev/null }
-
+  # State is whether our file exists, not whether sudo asks for a password, since another
+  # sudoers rule may also grant NOPASSWD. /etc/sudoers.d is root-only, but if the file
+  # exists NOPASSWD is active, so `sudo -n test` can check it without prompting.
   if [[ $cmd == toggle ]]; then
-    _nopasswd_on && cmd=off || cmd=on
+    sudo -n test -e $f 2>/dev/null && cmd=off || cmd=on
   fi
 
   case $cmd in
@@ -124,10 +124,12 @@ nopw() {
       print -r -- "$USER ALL=(ALL:ALL) NOPASSWD: ALL" > $tmp
       # Validate before installing; a broken sudoers file can lock you out of sudo
       sudo visudo -cqf $tmp && sudo install -m 0440 -o root -g root $tmp $f
+      rc=$?
       rm -f $tmp
+      (( rc == 0 )) || return $rc
       ;;
     off)
-      sudo rm -f $f && sudo -k
+      sudo rm -f $f && sudo -k || return
       ;;
     status) ;;
     *)
@@ -136,7 +138,14 @@ nopw() {
       ;;
   esac
 
-  _nopasswd_on && print "passwordless sudo: ON" || print "passwordless sudo: OFF"
+  if sudo -n test -e $f 2>/dev/null; then
+    print "passwordless sudo: ON"
+  # -k ignores cached credentials, so this only succeeds when some rule grants NOPASSWD
+  elif sudo -kn true 2>/dev/null; then
+    print "passwordless sudo: OFF (another sudoers rule still grants NOPASSWD)"
+  else
+    print "passwordless sudo: OFF"
+  fi
 }
 
 # Pull dotfiles, re-run install.sh (links, packages, zsh plugins), upgrade mise tools,
