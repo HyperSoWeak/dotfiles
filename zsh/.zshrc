@@ -151,7 +151,15 @@ nopasswd() {
 # Pull dotfiles, re-run install.sh (links, packages, zsh plugins), upgrade mise tools,
 # sync nvim plugins to lazy-lock.json, then reload zsh. Args go to install.sh.
 updot() {
-  local dotfiles="$HOME/.dotfiles"
+  local dotfiles="$HOME/.dotfiles" dirty
+  # Lazy rewrites the lockfile on local updates; restore below resets it to the repo's anyway.
+  git -C "$dotfiles" checkout -- nvim/lazy-lock.json || return
+  dirty=$(git -C "$dotfiles" status --porcelain --untracked-files=no) || return
+  if [[ -n $dirty ]]; then
+    print -u2 "updot: local changes in $dotfiles; commit, stash or discard them first:"
+    print -u2 -- "$dirty"
+    return 1
+  fi
   git -C "$dotfiles" pull --ff-only || return
   "$dotfiles/install.sh" "$@" || return
   if command -v mise >/dev/null; then
