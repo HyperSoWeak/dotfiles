@@ -8,25 +8,25 @@ HISTSIZE=100000
 SAVEHIST=100000
 
 setopt INC_APPEND_HISTORY_TIME
-setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 unsetopt beep
 
 # ---------------------------------------------------------------- Environment
-export SUDO_EDITOR=$(command -v nvim)
 export EDITOR=nvim
 export VISUAL=nvim
 
-typeset -U path PATH
+typeset -U path
 # mise shims: tools installed by mise on machines without pacman.
 path=("$HOME/.local/bin" "$HOME/.local/share/mise/shims" $path)
+# After path so nvim from mise is found
+export SUDO_EDITOR=$(command -v nvim)
 
 ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 
 # -------------------------------------------------------------------- Vi mode
-export KEYTIMEOUT=1
+KEYTIMEOUT=1
 ZVM_INIT_MODE=sourcing
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 source "$ZSH_PLUGINS/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
@@ -89,7 +89,7 @@ function sudo {
 
 mkcd() {
   if (( $# != 1 )); then
-    echo "usage: mkcd <directory>"
+    print -u2 "usage: mkcd <directory>"
     return 1
   fi
 
@@ -98,7 +98,7 @@ mkcd() {
 
 venv() {
   if [[ ! -f .venv/bin/activate ]]; then
-    echo "venv: .venv/bin/activate not found in $(pwd)"
+    print -u2 "venv: .venv/bin/activate not found in $PWD"
     return 1
   fi
 
@@ -107,12 +107,12 @@ venv() {
 
 detach() {
   if (( $# == 0 )); then
-    echo "usage: detach <command> [args...]"
+    print -u2 "usage: detach <command> [args...]"
     return 1
   fi
 
   # Output goes to /dev/null, so a typo would otherwise fail silently.
-  whence -- "$1" >/dev/null || { echo "detach: command not found: $1"; return 127; }
+  whence -- "$1" >/dev/null || { print -u2 "detach: command not found: $1"; return 127; }
   nohup "$@" >/dev/null 2>&1 &!
 }
 
@@ -183,10 +183,8 @@ updot() {
 }
 
 # ---------------------------------------------------------- Optional profiles
-# A machine may opt into the tracked daily profile from ~/.zshrc.local:
+# Machine-specific config, not tracked here
 [[ -r "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
 
 # Must remain last because it wraps every widget defined above and by profiles.
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-true
