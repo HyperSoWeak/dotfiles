@@ -105,6 +105,40 @@ detach() {
   nohup "$@" >/dev/null 2>&1 &!
 }
 
+# Toggle passwordless sudo for the current user.
+# Usage: nopasswd [on|off|status]   (no arg = toggle)
+nopw() {
+  local f=/etc/sudoers.d/10-nopasswd-$USER
+  local cmd=${1:-toggle}
+
+  # -k ignores cached credentials, so this only succeeds when NOPASSWD is active
+  _nopasswd_on() { sudo -kn true 2>/dev/null }
+
+  if [[ $cmd == toggle ]]; then
+    _nopasswd_on && cmd=off || cmd=on
+  fi
+
+  case $cmd in
+    on)
+      local tmp=$(mktemp)
+      print -r -- "$USER ALL=(ALL:ALL) NOPASSWD: ALL" > $tmp
+      # Validate before installing; a broken sudoers file can lock you out of sudo
+      sudo visudo -cqf $tmp && sudo install -m 0440 -o root -g root $tmp $f
+      rm -f $tmp
+      ;;
+    off)
+      sudo rm -f $f && sudo -k
+      ;;
+    status) ;;
+    *)
+      print -u2 "usage: nopasswd [on|off|status]"
+      return 1
+      ;;
+  esac
+
+  _nopasswd_on && print "passwordless sudo: ON" || print "passwordless sudo: OFF"
+}
+
 # Pull dotfiles, re-run install.sh (links, packages, zsh plugins), upgrade mise tools,
 # sync nvim plugins to lazy-lock.json, then reload zsh. Args go to install.sh.
 updot() {
