@@ -66,6 +66,7 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # -------------------------------------------------------------------- Aliases
+# Trailing space expands aliases after sudo (sudo ls -> sudo lsd)
 alias sudo='sudo '
 
 alias ls='lsd'
@@ -76,6 +77,16 @@ alias ff='fastfetch'
 alias lg='lazygit'
 
 # ------------------------------------------------------------------ Functions
+# sudo's secure_path excludes mise shims, and a shim run as root reads root's mise config,
+# so swap a shim for the real binary it points to. `function` form avoids expanding the
+# sudo alias in the definition.
+function sudo {
+  if [[ ${commands[$1]} == */mise/shims/* ]]; then
+    set -- "$(mise which "$1")" "${@:2}"
+  fi
+  command sudo "$@"
+}
+
 mkcd() {
   if (( $# != 1 )); then
     echo "usage: mkcd <directory>"
