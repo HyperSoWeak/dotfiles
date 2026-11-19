@@ -121,7 +121,9 @@ nopasswd() {
   case $cmd in
     on)
       local tmp=$(mktemp)
-      print -r -- "$USER ALL=(ALL:ALL) NOPASSWD: ALL" > $tmp
+      # verifypw=any lets `sudo -nv` (used by starship's sudo module) pass despite the
+      # password-requiring %wheel rule, so the prompt shows the unlocked icon
+      print -r -l -- "Defaults:$USER verifypw=any" "$USER ALL=(ALL:ALL) NOPASSWD: ALL" > $tmp
       # Validate before installing; a broken sudoers file can lock you out of sudo
       sudo visudo -cqf $tmp && sudo install -m 0440 -o root -g root $tmp $f
       rc=$?
